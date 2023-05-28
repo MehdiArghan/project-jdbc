@@ -30,7 +30,7 @@ public class Main {
         metod.insertIntoUniversity(universityAzad);
         metod.insertIntoUniversity(universityHarvard);*/
 
-
-
+        Metod metod=new Metod();
+        metod.ineerJoin();
     }
 }

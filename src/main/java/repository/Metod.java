@@ -121,4 +121,37 @@ public class Metod {
         }
     }
 
+
+    public void ineerJoin() {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = JdbcConstant.getConnection();
+            if (connection == null) {
+                System.out.println("connection is null");
+            } else {
+                preparedStatement = connection.prepareStatement(INNER_JOIN);
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    System.out.print(resultSet.getString("firstname") + " ");
+                    System.out.println(resultSet.getString("name"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                JdbcConstant.closeConnection(connection);
+                JdbcConstant.closePreparedStatement(preparedStatement);
+                JdbcConstant.closeResultSet(resultSet);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
 }
