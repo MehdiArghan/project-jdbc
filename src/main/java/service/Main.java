@@ -30,7 +30,13 @@ public class Main {
         metod.insertIntoUniversity(universityAzad);
         metod.insertIntoUniversity(universityHarvard);*/
 
+       /* Metod metod=new Metod();
+        metod.ineerJoin();*/
+
+       /* Metod metod=new Metod();
+        metod.deleteById(4);*/
+
         Metod metod=new Metod();
-        metod.ineerJoin();
+        metod.updateById(23,2);
     }
 }

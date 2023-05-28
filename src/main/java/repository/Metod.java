@@ -154,4 +154,57 @@ public class Metod {
     }
 
 
+    public void deleteById(int id) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcConstant.getConnection();
+            if (connection == null) {
+                System.out.println("connection is null");
+            } else {
+                preparedStatement = connection.prepareStatement(DELETE_BY_ID);
+                preparedStatement.setInt(1, id);
+                preparedStatement.execute();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                JdbcConstant.closeConnection(connection);
+                JdbcConstant.closePreparedStatement(preparedStatement);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    public void updateById(int newId, int oldId) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = JdbcConstant.getConnection();
+            if (connection == null) {
+                System.out.println("connection is null");
+            } else {
+                preparedStatement = connection.prepareStatement(UPDATE_BY_ID);
+                preparedStatement.setInt(1, newId);
+                preparedStatement.setInt(2, oldId);
+                preparedStatement.execute();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                JdbcConstant.closeConnection(connection);
+                JdbcConstant.closePreparedStatement(preparedStatement);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
